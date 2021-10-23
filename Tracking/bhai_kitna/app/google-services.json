@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "547278510999",
+    "project_id": "hallothon-ec49e",
+    "storage_bucket": "hallothon-ec49e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547278510999:android:d88c0c0fa225e808dd82d2",
+        "android_client_info": {
+          "package_name": "com.example.bhai_kitna"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547278510999-jn0gp6lfa5dnrleb0cv10tfvgmuhl04v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD24D3gnuXX4FAldzkzJp63yY89ZhsF-JM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547278510999-jn0gp6lfa5dnrleb0cv10tfvgmuhl04v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
