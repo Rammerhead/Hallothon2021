@@ -2,21 +2,18 @@ package com.example.bhai_kitna
 
 import android.Manifest
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.example.bhai_kitna.databinding.ActivityMapsBinding
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -71,9 +68,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             fusedLocClient.lastLocation.addOnCompleteListener {
                 // lastLocation is a task running in the background
                 val location = it.result //obtain location
-                //reference to the database
-                val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-                val ref: DatabaseReference = database.getReference("test")
+                val database = FirebaseDatabase.getInstance("https://thike-bhai-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                val myRef = database.getReference("CCTV_1")
                 if (location != null) {
 
                     val latLng = LatLng(location.latitude, location.longitude)
@@ -85,7 +81,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     map.moveCamera(update)
                     //Save the location data to the database
-                    ref.setValue(location)
+                    // Write a message to the database
+
+
+                    myRef.setValue(location)
                 } else {
                     // if location is null , log an error message
                     Log.e(TAG, "No location found")
