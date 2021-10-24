@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import os 
-v = open("namesofviolators.txt")
+v = open("namesofviolators.txt", 'w')
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer/trainer.yml')
 cascadePath = "Cascades/haarcascade_frontalface_default.xml"
@@ -13,10 +13,12 @@ id = 0
 names = ['None', 'Aditya', "Rohan", "Kohav"] 
 # Initialize and start realtime video capture
 
-for pic in os.listdir("Violators"):
+for pic in sorted(os.listdir("Violators")):
     img = cv2.imread("Violators/" + pic) 
     # Define min window size to be recognized as a face
     
+    minW = img.shape[0]
+    minH = img.shape[1]
     #ret, img =cam.read()
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     
@@ -38,24 +40,24 @@ for pic in os.listdir("Violators"):
             id = "unknown"
             confidence = "  {0}%".format(round(100 - confidence))
         
-        cv2.putText(
-                    img, 
-                    str(id), 
-                    (x+5,y-5), 
-                    font, 
-                    1, 
-                    (255,255,255), 
-                    2
-                   )
-        cv2.putText(
-                    img, 
-                    str(confidence), 
-                    (x+5,y+h-5), 
-                    font, 
-                    1, 
-                    (255,255,0), 
-                    1
-                   )  
-    v.append(str(id) + "\n") 
+        #cv2.putText(
+        #            img, 
+        #            str(id), 
+        #            (x+5,y-5), 
+        #            font, 
+        #            1, 
+        #            (255,255,255), 
+        #            2
+        #           )
+        #cv2.putText(
+        #            img, 
+        #            str(confidence), 
+        #            (x+5,y+h-5), 
+        #            font, 
+        #            1, 
+        #            (255,255,0), 
+        #            1
+        #           )  
+    v.write(str(id) + "\n") 
     
  
