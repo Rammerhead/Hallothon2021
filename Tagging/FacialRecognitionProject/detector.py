@@ -1,8 +1,9 @@
+import time
 import numpy as np
 import cv2
 import random
 import facesnapshotrecog
-# multiple cascades: https://github.com/Itseez/opencv/tree/master/data/haarcascades
+import opening
 
 face_cascade = cv2.CascadeClassifier('Cascades/haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('Cascades/haarcascade_eye.xml')
@@ -75,6 +76,7 @@ while 1:
                     cv2.putText(img, not_weared_mask, org, font, font_scale, not_weared_mask_font_color, thickness, cv2.LINE_AA)
                     cv2.imwrite("Violators/User." + str(i) + ".jpg", img[y:y+h, x:x+w])
                     facesnapshotrecog.do_everything()
+                    opening.do_everything()
                     #cv2.rectangle(img, (mx, my), (mx + mh, my + mw), (0, 0, 255), 3)
                     break
 
